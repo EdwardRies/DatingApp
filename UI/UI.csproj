@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="client\src\app\errors\test-errors.components.ts" />
+    <None Remove="client\src\app\errors\test-errors\test-errors.component.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="client\src\app\errors\test-errors\test-errors.component.html" />
+    <TypeScriptCompile Include="client\src\app\errors\test-errors\test-errors.component.css" />
+    <TypeScriptCompile Include="client\src\app\errors\test-errors\test-errors.component.ts" />
+  </ItemGroup>
+
+</Project>
