@@ -1,26 +1,21 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+var builder = WebApplication.CreateBuilder(args);
 
-namespace UI
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
+builder.Services.AddControllers();
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
-}
+builder.Services.AddCors();
+
+builder.Services.AddControllers();
+
+builder.Services.AddEndpointsApiExplorer();
+
+var app = builder.Build();
+
+app.UseHttpsRedirection();
+
+app.UseCors(corsPolicy => corsPolicy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
+
+app.MapControllers();
+
+app.UseHttpsRedirection();
+
+await app.RunAsync();
